@@ -35,3 +35,5 @@ FAV_USER_PASS=testingisfun99
 BUILD_NAME=QA-testathon-live
 
 ## email
+
+![alt text](<Screenshot 2025-09-23 at 12.22.35.png>)
