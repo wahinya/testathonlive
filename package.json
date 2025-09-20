@@ -1,0 +1,13 @@
+{
+  "name": "playwright-browserstack-testathon-live",
+  "version": "1.0.0",
+  "scripts": {
+    "test:local": "npx playwright test",
+    "test:bs": "npx browserstack-node-sdk playwright test --config=playwright.bs.config.js"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.0.0",
+    "@playwright/test": "^1.48.0",
+    "browserstack-node-sdk": "^1.20.0"
+  }
+}

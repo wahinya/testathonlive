@@ -1,0 +1,19 @@
+framework: playwright
+userName: ${BROWSERSTACK_USERNAME}
+accessKey: ${BROWSERSTACK_ACCESS_KEY}
+projectName: "testathon-live"
+buildName: ${BUILD_NAME} # 👈 pulled from env
+
+platforms:
+  - os: Windows
+    osVersion: 11
+    browserName: chrome
+    browserVersion: latest
+  - os: OS X
+    osVersion: Ventura
+    browserName: playwright-webkit
+    browserVersion: latest
+
+testObservability: true
+debug: true
+consoleLogs: errors
