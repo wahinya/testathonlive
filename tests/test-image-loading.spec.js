@@ -3,7 +3,7 @@ const { test, expect } = require("@playwright/test");
 const { LoginPage } = require("../pages/login/LoginPage");
 const { ShelfPage } = require("../pages/cart/CartPage");
 
-test("all shelf items should have an image [TC-1930]", async ({ page }) => {
+test("all shelf items should have an image [TC-48699979]", async ({ page }) => {
   let testStatus = "passed";
   const loginPage = new LoginPage(page);
   const shelfPage = new ShelfPage(page);

@@ -2,7 +2,7 @@ require("dotenv").config();
 const { test, expect } = require("@playwright/test");
 const { LoginPage } = require("../pages/login/LoginPage");
 
-test("Login as demouser [TC-1928]", async ({ page }) => {
+test("Login as demouser [TC-48691307]", async ({ page }) => {
   const loginPage = new LoginPage(page);
   let testStatus = "passed";
   try {
