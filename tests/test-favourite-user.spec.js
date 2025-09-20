@@ -3,7 +3,7 @@ const { test, expect } = require("@playwright/test");
 const { LoginPage } = require("../pages/login/LoginPage");
 const { ShelfPage } = require("../pages/cart/CartPage");
 
-test("all shelf items favourite button state should be verified [TC-1930]", async ({
+test("all shelf items favourite button state should be verified [TC-1929]", async ({
   page,
 }) => {
   const loginPage = new LoginPage(page);

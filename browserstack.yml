@@ -1,7 +1,7 @@
 framework: playwright
 userName: ${BROWSERSTACK_USERNAME}
 accessKey: ${BROWSERSTACK_ACCESS_KEY}
-buildName: ${BUILD_NAME} # 👈 pulled from env
+buildName: ${BUILD_NAME}
 projectName: testathon.live
 
 platforms:
@@ -15,5 +15,6 @@ platforms:
     browserVersion: latest
 
 testObservability: true
+browserstackAutomation: false
 debug: true
 consoleLogs: errors

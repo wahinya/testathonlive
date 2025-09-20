@@ -8,6 +8,18 @@ const buildName = `Build-${new Date().toISOString()}`;
 module.exports = defineConfig({
   testDir: "./tests",
   timeout: 60 * 1000,
+  reporter: [
+    ["line"],
+    [
+      "@browserstack/test-management-playwright-reporter",
+      {
+        username: BS_USERNAME,
+        accessKey: BS_ACCESS_KEY,
+        projectName: "testathon.live",
+        buildName: `Build-${new Date().toISOString()}`,
+      },
+    ],
+  ],
   use: {
     trace: "on-first-retry",
     screenshot: "only-on-failure",
@@ -31,7 +43,6 @@ module.exports = defineConfig({
               sessionName: "testathon live session",
               build: buildName,
               testObservability: true,
-              projectName: "testathon.live",
             })
           )}`,
         },
