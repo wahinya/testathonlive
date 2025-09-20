@@ -18,6 +18,7 @@ Since my user is restricted from sharing the rports on public I have attached im
 ## .env
 
 BROWSERSTACK_USERNAME= <your username>
+
 BROWSERSTACK_ACCESS_KEY=<your access key>
 
 APP_URL=https://testathon.live/
@@ -32,3 +33,5 @@ FAV_USER_NAME=fav_user
 FAV_USER_PASS=testingisfun99
 
 BUILD_NAME=QA-testathon-live
+
+## email
