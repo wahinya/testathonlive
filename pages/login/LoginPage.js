@@ -11,17 +11,12 @@ async function navigateToLoginPage(page) {
 }
 
 async function login(page, username, password) {
-  // Select username from first custom dropdown
-  await page.click("div[class=' css-26l3qy-menu']"); // open username dropdown
-  await page.click(
-    `div[class=' css-26l3qy-menu'] span:has-text("${username}")`
-  );
+  await page.click("div[id*='username']");
+  await page.locator("div.css-26l3qy-menu span", { hasText: username }).click();
 
-  // Select password from second custom dropdown
-  await page.click("div[class=' css-26l3qy-menu'] >> nth=1"); // open password dropdown
-  await page.click(
-    `div[class=' css-26l3qy-menu'] >> nth=1 span:has-text("${password}")`
-  );
+  // Open password dropdown
+  await page.click("div[id*='password']");
+  await page.locator("div.css-26l3qy-menu span", { hasText: password }).click();
 
   // Submit login using ID
   await page.click("#login-btn");
