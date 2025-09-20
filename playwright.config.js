@@ -25,6 +25,7 @@ module.exports = defineConfig({
     actionTimeout: 15 * 1000,
     navigationTimeout: 30 * 1000,
     testObservability: true,
+    projectName: "testlive.live",
   },
 
   projects: isBrowserStack

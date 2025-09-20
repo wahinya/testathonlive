@@ -31,6 +31,7 @@ module.exports = defineConfig({
               sessionName: "testathon live session",
               build: buildName,
               testObservability: true,
+              projectName: "testlive.live",
             })
           )}`,
         },

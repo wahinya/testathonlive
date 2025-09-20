@@ -2,6 +2,7 @@ framework: playwright
 userName: duncan@rescue.co
 accessKey: 2exRXMMDsPrGTZTPmweo
 buildName: QA-testathon-live
+projectName: testlive.live
 platforms:
   - os: Windows
     osVersion: 11
@@ -17,7 +18,7 @@ consoleLogs: errors
 testContextOptions:
   skipSessionStatus: false
   skipSessionName: false
-buildIdentifier: '#10'
+buildIdentifier: '#11'
 browserstackLocal: false
 logDir: /Users/wahinya/Documents/Browserstack/september-testathon/testathon-live/log
 browserStackLocalOptions:
