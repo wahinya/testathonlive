@@ -25,10 +25,10 @@ test("all shelf items favourite button state should be verified [TC-1930]", asyn
   } finally {
     // Report status to BrowserStack safely
     try {
-      await page.evaluate((_status) => {
+      await page.evaluate((_status, name) => {
         window.browserstack_executor?.({
           action: "setSessionStatus",
-          arguments: { status: _status, reason: "Test completed" },
+          arguments: { status: _status, reason: "Test completed", name },
         });
       }, testStatus);
     } catch (reportErr) {
