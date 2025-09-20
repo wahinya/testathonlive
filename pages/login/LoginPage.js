@@ -1,28 +1,54 @@
 const { expect } = require("@playwright/test");
 
-async function navigateToLoginPage(page) {
-  await page.goto(process.env.APP_URL);
+class LoginPage {
+  constructor(page) {
+    this.page = page;
 
-  // Use role+name locator instead of invalid ID
-  const signInLink = page.getByRole("link", { name: "Sign In" });
+    // Locators
+    this.usernameDropdown = page.locator("#username");
+    this.passwordDropdown = page.locator("#password");
+    this.loginButton = page.getByRole("button", { name: /log in/i });
+    this.signInLink = page.getByRole("link", { name: /Sign in/i });
+  }
 
-  await expect(signInLink).toBeVisible();
-  await signInLink.click();
+  async navigateToLoginPage() {
+    await this.page.goto(process.env.APP_URL);
+    await expect(this.signInLink).toBeVisible();
+    await this.signInLink.click();
+  }
+
+  async selectFromReactSelect(containerLocator, value) {
+    await expect(containerLocator).toBeVisible();
+    await containerLocator.click();
+
+    const input = containerLocator.locator(
+      'input[id^="react-select"][id$="-input"]'
+    );
+    await expect(input).toBeVisible();
+    await input.fill(value);
+
+    // ✅ Restrict to option elements only
+    const option = this.page.locator(".css-1n7v3ny-option", {
+      hasText: value,
+    });
+
+    await expect(option).toBeVisible();
+    await option.click();
+  }
+
+  async selectUsername(username) {
+    await this.selectFromReactSelect(this.usernameDropdown, username);
+  }
+
+  async selectPassword(password) {
+    await this.selectFromReactSelect(this.passwordDropdown, password);
+  }
+
+  async login(username, password) {
+    await this.selectUsername(username);
+    await this.selectPassword(password);
+    await this.loginButton.click();
+  }
 }
 
-async function login(page, username, password) {
-  await page.click("div[id*='username']");
-  await page.locator("div.css-26l3qy-menu span", { hasText: username }).click();
-
-  // Open password dropdown
-  await page.click("div[id*='password']");
-  await page.locator("div.css-26l3qy-menu span", { hasText: password }).click();
-
-  // Submit login using ID
-  await page.click("#login-btn");
-}
-
-module.exports = {
-  navigateToLoginPage,
-  login,
-};
+module.exports = { LoginPage };

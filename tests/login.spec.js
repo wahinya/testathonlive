@@ -1,12 +1,16 @@
 require("dotenv").config();
-const { test } = require("@playwright/test");
-const { navigateToLoginPage, login } = require("../pages/login/LoginPage");
+const { test, expect } = require("@playwright/test");
+const { LoginPage } = require("../pages/login/LoginPage");
 
 test("Login as demouser [TC-1928]", async ({ page }) => {
+  const loginPage = new LoginPage(page);
   let testStatus = "passed";
   try {
-    await navigateToLoginPage(page);
-    await login(page, process.env.DEMO_USER_NAME, process.env.DEMO_USER_PASS);
+    await loginPage.navigateToLoginPage();
+    await loginPage.login(
+      process.env.DEMO_USER_NAME,
+      process.env.DEMO_USER_PASS
+    );
     // ✅ Check username is visible and matches
     const usernameElement = page.locator("//span[@class='username']");
     await expect(usernameElement).toHaveText(process.env.DEMO_USER_NAME);

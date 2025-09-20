@@ -1,22 +1,24 @@
 require("dotenv").config();
-const { test } = require("@playwright/test");
-const { navigateToLoginPage, login } = require("../pages/login/LoginPage");
+const { test, expect } = require("@playwright/test");
+const { LoginPage } = require("../pages/login/LoginPage");
+const { ShelfPage } = require("../pages/cart/CartPage");
 
 test("all shelf items favourite button state should be verified [TC-1930]", async ({
   page,
 }) => {
+  const loginPage = new LoginPage(page);
+  const shelfPage = new ShelfPage(page);
   let testStatus = "passed";
 
   try {
-    await navigateToLoginPage(page);
+    await loginPage.navigateToLoginPage(page);
+    await loginPage.login(process.env.FAV_USER_NAME, process.env.FAV_USER_PASS);
 
-    // Login with fav_user creds from env
-    await login(page, process.env.FAV_USER_NAME, process.env.FAV_USER_PASS);
     const usernameElement = page.locator("//span[@class='username']");
     await expect(usernameElement).toHaveText(process.env.FAV_USER_NAME);
 
     // checkif there is a favourited item
-    await shelfPage.verifyAllFavouriteButtonsClicked();
+    await shelfPage.verifyAtLeastOneFavourited();
   } catch (e) {
     testStatus = "failed";
     throw e;

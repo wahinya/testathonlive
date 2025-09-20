@@ -1,0 +1,26 @@
+framework: playwright
+userName: duncan@rescue.co
+accessKey: 2exRXMMDsPrGTZTPmweo
+projectName: testathon-live
+buildName: QA-testathon-live
+platforms:
+  - os: Windows
+    osVersion: 11
+    browserName: chrome
+    browserVersion: latest
+  - os: OS X
+    osVersion: Ventura
+    browserName: playwright-webkit
+    browserVersion: latest
+testObservability: true
+debug: true
+consoleLogs: errors
+testContextOptions:
+  skipSessionStatus: false
+  skipSessionName: false
+buildIdentifier: '#7'
+browserstackLocal: false
+logDir: /Users/wahinya/Documents/Browserstack/september-testathon/testathon-live/log
+browserStackLocalOptions:
+  skipBinaryInitialisation: false
+proxySettings: {}

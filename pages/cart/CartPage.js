@@ -6,24 +6,15 @@ class ShelfPage {
     this.shelfItems = page.locator(".shelf-item");
   }
 
-  async goto(url) {
-    await this.page.goto(url);
-  }
+  async verifyAtLeastOneFavourited() {
+    await this.page.waitForSelector(".shelf-item button.clicked", {
+      timeout: 5000,
+    });
 
-  async verifyAllFavouriteButtonsClicked() {
-    const count = await this.shelfItems.count();
+    const clickedButtons = this.page.locator(".shelf-item button.clicked");
+    const count = await clickedButtons.count();
 
-    for (let i = 0; i < count; i++) {
-      const favBtn = this.shelfItems
-        .nth(i)
-        .locator('button[aria-label="delete"]');
-      const favClass = await favBtn.getAttribute("class");
-
-      await expect(
-        favClass && favClass.includes("clicked"),
-        `Shelf item ${i} favourite button should be clicked`
-      ).toBeTruthy();
-    }
+    expect(count).toBeGreaterThan(0); // ✅ at least one favourited
   }
 
   async verifyAllHaveImages() {

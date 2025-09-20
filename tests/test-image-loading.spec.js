@@ -1,14 +1,22 @@
 // tests/shelf-items.spec.js
 const { test, expect } = require("@playwright/test");
+const { LoginPage } = require("../pages/login/LoginPage");
+const { ShelfPage } = require("../pages/cart/CartPage");
 
 test("all shelf items should have an image [TC-1930]", async ({ page }) => {
   let testStatus = "passed";
-
+  const loginPage = new LoginPage(page);
+  const shelfPage = new ShelfPage(page);
   try {
-    // Login with image_not_loading creds from env
-    await login(page, process.env.IMAGE_USER_NAME, process.env.IMAGE_USER_PASS);
+    await loginPage.navigateToLoginPage(page);
+    await loginPage.login(
+      process.env.IMAGE_USER_NAME,
+      process.env.IMAGE_USER_PASS
+    );
+
     const usernameElement = page.locator("//span[@class='username']");
     await expect(usernameElement).toHaveText(process.env.IMAGE_USER_NAME);
+
     // veriy all have image
     await shelfPage.verifyAllHaveImages();
   } catch (e) {
