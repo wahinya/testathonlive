@@ -13,6 +13,7 @@ module.exports = defineConfig({
     screenshot: "only-on-failure",
     video: "retain-on-failure",
   },
+  testObservability: true,
   projects: [
     {
       name: "bs-chrome",
@@ -29,6 +30,7 @@ module.exports = defineConfig({
               "browserstack.networkLogs": true,
               sessionName: "testathon live session",
               build: buildName,
+              testObservability: true,
             })
           )}`,
         },

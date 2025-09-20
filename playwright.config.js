@@ -24,6 +24,7 @@ module.exports = defineConfig({
     video: isBrowserStack ? "retain-on-failure" : "off",
     actionTimeout: 15 * 1000,
     navigationTimeout: 30 * 1000,
+    testObservability: true,
   },
 
   projects: isBrowserStack
